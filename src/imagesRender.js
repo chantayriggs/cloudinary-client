@@ -14,9 +14,10 @@ const ImagesRender = () => {
 
     return (
         <div>
+            <h2>Images Render</h2>
             {
                 images === null ? <div>Loading... </div> :
-                <div>
+                <div className="images-wrapper">
                     {
                         images.map( image  => (
                             <div key={image.id}>

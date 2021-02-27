@@ -27,8 +27,12 @@ const App = () => {
 
   return (
     <div>
-      <input type="file" onChange={ event => setImageSelected(event.target.files[0])} />
-      <button onClick={uploadImage}>Upload Image</button>
+
+      <div className="upload-wrapper">
+        <h1>Upload new image</h1>
+        <input type="file" onChange={ event => setImageSelected(event.target.files[0])} />
+        <button onClick={uploadImage}>Upload Image</button>
+      </div>
       <ImagesRender />
     </div>
   )
