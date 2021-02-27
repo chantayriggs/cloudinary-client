@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React, { useContext } from 'react'
+import { StateContext } from "../src/context/stateContext"
+import ImagesService from "../src/services/imageService"
+
+
 
 const ImagesRender = () => {
 
-    const [ images, setImages ] = useState(null)
+    const stateContext = useContext(StateContext)
 
-    useEffect( () => {
-        axios.get("https://cr-cloudinary-backend.herokuapp.com/images")
-             .then( response => setImages(response.data))
-             .catch( error => console.log(error))
-    }, [])
+    const handleDelete = id => {
+        ImagesService.deleteImage(id)
+    }
 
 
     return (
+
         <div>
-            <h2>Images Render</h2>
-            {
-                images === null ? <div>Loading... </div> :
-                <div className="images-wrapper">
-                    {
-                        images.map( image  => (
-                            <div key={image.id}>
-                                <img src={image.image_url} />
-                            </div>
-                        ))
-                    }
-                </div>
-            }
-        </div>
+        <h2>Images Render</h2>
+            <div className="images-wrapper">
+                {
+                    stateContext.images.map( image  => (
+                        <div className="image-delete-wrapper" key={image.id}>
+                            <img src={image.image_url} />
+                            <button onClick={ () => handleDelete(image.id)}>Delete</button>
+                        </div>
+                    ))
+                }
+            </div>
+    </div>
     )
 }
 

@@ -1,7 +1,8 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ImagesRender from "./imagesRender"
 import "./styles/main.scss"
+import ImagesService from "../src/services/imageService"
 
 const App = () => {
 
@@ -17,9 +18,7 @@ const App = () => {
            const data = {
              "image_url": response.data.url
            }
-           axios.post("https://cr-cloudinary-backend.herokuapp.com/image", data)
-                .then( response => console.log(response))
-                .catch( error => console.log(error))
+           ImagesService.postImage(data)
          })
          .catch( error => console.log(error))
   }

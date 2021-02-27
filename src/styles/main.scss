@@ -25,5 +25,14 @@ h2 {
 
 .images-wrapper {
     padding-left: 100px;
+
     display: flex;
+    flex-wrap: wrap;
+}
+
+.image-delete-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
 }
